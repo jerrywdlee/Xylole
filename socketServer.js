@@ -34,27 +34,13 @@ server.listen(process.env.PORT||port,function () {
 // send Dynamic js
 const fs = require('fs');
 const script = fs.readFileSync( __dirname +'/src/scripts/remoteScript.js').toString()
-const changeUrlReg = /var serverSiteUrl \= \"(?:.*?)\"/
-
-app.get('/js', function (req, res) {
-  // res.type(mime.lookup(file));
-  let newScript = script.replace(changeUrlReg, function (match) {
-    // console.log(match);
-    let newUrl = `var serverSiteUrl = "${'http://google.com'}"`
-    return newUrl
-  })
-  res.send(newScript)
-})
-
-// var app = require('http').createServer();
-// app.listen(port);
-const io = require('socket.io')(server)
-
+const changeUrlReg = /var serverSiteUrl \= \"(?:.*?)\"/ // replace serverSiteUrl Dynamicly
+const changeToSlientReg = /var ioDomain \= prompt\((?:.*?)\)/
 
 // open port on Internet
-/*
 const ngrok = require('ngrok');
 const qrcode = require('qrcode-terminal');
+var ngrokUrl = ''
 
 ngrok.connect({
   proto: 'http', // http|tcp|tls
@@ -65,15 +51,58 @@ ngrok.connect({
   region: 'ap' // one of ngrok regions (us, eu, au, ap), defaults to us
 }, function (err, url) {
   if (err) {
+    printTags('err')
     console.error(err);
   }else {
-    console.log("Temporary Internet Connection On :");
-    console.log(url);
+    ngrokUrl = url
 
-    qrcode.generate(url);
+    console.log(color.g + "Temporary Internet Connection On :" + color.e)
+    console.log(url)
+    qrcode.generate(url)
+
+    // show prompt
+    let insertUrlExplicit = `javascript:(function(d){var s=d.createElement('script');s.src='${url}/js';d.body.appendChild(s)})(document)`
+    // hide prompt
+    let insertUrlSlient = `javascript:(function(d){var s=d.createElement('script');s.src='${url}/jss';d.body.appendChild(s)})(document)`
+    console.log('\n\n' + color.g+ 'To insert Script, input code below in Address Bar' + color.e);
+    console.log(color.y + 'Explicit Mode: ' + color.e)
+    console.log(' ' + insertUrlExplicit + '\n')
+    console.log(color.y + 'Slient Mode: ' + color.e)
+    console.log(' ' + insertUrlSlient + '\n')
+
+    // qrcode.generate(insertUrl)
   }
 });
-*/
+
+app.get('/js', function (req, res) {
+  // res.type(mime.lookup(file));
+  let newScript = script.replace(changeUrlReg, function (match) {
+    // console.log(match);
+    let newUrl = `var serverSiteUrl = "${ngrokUrl ? ngrokUrl : ('http://localhost:'+port)}"`
+    return newUrl
+  })
+  res.send(newScript)
+})
+
+// slience
+app.get('/jss', function (req, res) {
+  // res.type(mime.lookup(file));
+  // var ioDomain =
+  /*let newScript = script.replace(changeUrlReg, function (match) {
+    // console.log(match);
+    let newUrl = `var serverSiteUrl = "${ngrokUrl ? ngrokUrl : ('http://localhost:'+port)}"`
+    return newUrl
+  })*/
+  newScript = script.replace(changeToSlientReg, function (match) {
+    let ioDomain = `var ioDomain = "${ngrokUrl ? ngrokUrl : ('http://localhost:'+port)}"`
+    return ioDomain
+  })
+  res.send(newScript)
+})
+
+// var app = require('http').createServer();
+// app.listen(port);
+const io = require('socket.io')(server)
 
 io.on('connection', function (socket) {
   console.log(color.c+"connection on "+socket.request.connection.remoteAddress+color.e);
@@ -99,7 +128,7 @@ io.on('connection', function (socket) {
 
   socket.on('disconnect', function() {
     printTags('from')
-    console.log(color.r+'Disconnected!!'+color.e);
+    console.log(color.r+'Disconnected!!'+color.e)
     return
   });
 
@@ -179,6 +208,10 @@ io.on('connection', function (socket) {
         break
       case 'to':
         process.stdout.write(color.g+`[${color.w + pageTitle + color.g}] >>> `+color.e);
+        break
+      case 'error':
+      case 'err':
+        process.stdout.write('\n'+color.r+`[${color.w + pageTitle||'Local' + color.r}] >>> `+color.e);
         break
       default:
 
