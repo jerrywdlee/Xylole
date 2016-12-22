@@ -9,7 +9,7 @@ Xylole.js is a remote console tool for developing web pages on devices which hav
 Beside, as we know, **Hexagon** is the symbol of **[Node.js](https://nodejs.org/en/)**, and hexagon is also the symbol of typical aromatic compounds, like **[benzene](https://en.wikipedia.org/wiki/Benzene)**.
 
 ## Useage
-
+### Install
 ```sh
 # Need node.js > v6
 $ git clone https://github.com/jerrywdlee/Xylole.git
@@ -19,6 +19,10 @@ $ node socketServer.js
 ```
 > Demo Page on http://localhost:8080
 
+### Mount to Pages
+```
+javascript:(function(d){var s=d.createElement('script');s.src='https://rawgit.com/jerrywdlee/Xylole/master/src/scripts/remoteScript.js';d.body.appendChild(s)})(document)
+```
 ## Waring
 Xylole.js also can be use as a terrible **crack tool**, DO NOT AGAINST LAWS!
 

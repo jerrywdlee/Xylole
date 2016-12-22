@@ -56,7 +56,7 @@ ngrok.connect({
   }else {
     ngrokUrl = url
 
-    console.log(color.g + "Temporary Internet Connection On :" + color.e)
+    console.log(color.g + "Please input url below into prompt shown in page :" + color.e)
     console.log(url)
     qrcode.generate(url)
 
@@ -110,7 +110,7 @@ io.on('connection', function (socket) {
   let pageTitle = ''
   socket.emit('siteInfo',Date.now())
   socket.on('siteInfo', (siteInfo) => {
-    pageTitle = siteInfo.title
+    pageTitle = siteInfo.title.substr(0, 15)
     // console.log('\n'+color.m+`[${pageTitle}] <<< `+ color.y + '~~~ Page Info ~~~' + color.y)
     printTags('from')
     process.stdout.write(color.y + '~~~ Page Info ~~~')
@@ -143,6 +143,7 @@ io.on('connection', function (socket) {
 
   socket.on('result', function(data) {
     printTags('from')
+    data['localTime'] = (new Date(data.at)).toLocaleString()
     console.log(JSON.stringify(data))
     return printTags('to')
   })
