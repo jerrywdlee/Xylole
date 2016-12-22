@@ -1,0 +1,30 @@
+{
+  "name": "xylole",
+  "version": "0.0.7",
+  "description": "Cross Site Console Tool !",
+  "main": "socketServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerrywdlee/Xylole.git"
+  },
+  "keywords": [
+    "XSS",
+    "Socket.io",
+    "console"
+  ],
+  "author": "Jerry Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jerrywdlee/Xylole/issues"
+  },
+  "homepage": "https://github.com/jerrywdlee/Xylole#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "ngrok": "^2.2.4",
+    "qrcode-terminal": "^0.11.0",
+    "socket.io": "^1.7.2"
+  }
+}
