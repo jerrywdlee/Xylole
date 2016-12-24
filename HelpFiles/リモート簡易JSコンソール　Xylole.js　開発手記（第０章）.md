@@ -63,7 +63,7 @@ javascript:(function(d){var s=d.createElement('script');s.src='https://rawgit.co
 * **立ち上がったサーバーとつなぐ**  
 　もしスクリプトが正しくマウントされたら、```Please Set IO Server's Domain```と入力を促すPromptが出現します。入力する値について、先ほどサーバーを立ち上がった時、```Please input url below into prompt shown in page :```という文言のすぐ下のURLを入れてください。
 サーバー再起動するたびに、URLが変わります。
-　成功にサーバーとつながった場合、サーバーのコンソール画面につないだページの```Page Info``が黄色で表示されます。一番下の緑色の矢印のところに、JavaScriptの関数等を入力すれば、そのページで実行されます。
+　成功にサーバーとつながった場合、サーバーのコンソール画面につないだページの`Page Info`が黄色で表示されます。一番下の緑色の矢印のところに、JavaScriptの関数等を入力すれば、そのページで実行されます。
 
 
 ## 原理

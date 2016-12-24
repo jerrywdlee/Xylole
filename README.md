@@ -20,12 +20,15 @@ $ node socketServer.js
 > Demo Page on http://localhost:8080
 
 ### Mount to Pages
+When `socketServer.js` started, it will show message like:
+
+
 ```
 javascript:(function(d){var s=d.createElement('script');s.src='https://rawgit.com/jerrywdlee/Xylole/master/src/scripts/remoteScript.js';d.body.appendChild(s)})(document)
 ```
 ## Waring
 Xylole.js also can be use as a terrible **crack tool**, DO NOT AGAINST LAWS!
 
-## Lisence
+## License
 **[MIT](http://opensource.org/licenses/MIT)**  
 [Copyright (c) 2016~2017 Jerry Lee](https://github.com/jerrywdlee/Xylole/blob/master/LICENSE)

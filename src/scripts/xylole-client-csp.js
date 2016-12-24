@@ -1,13 +1,3 @@
-// alert("remoteScript!")
-/*
-// fake jQuery
-var $ = {
-  fn: {
-    jquery: 'N/A'
-  }
-};
-*/
-
 (function() {
   var serverSiteUrl = "http://localhost:8080"
   console.log('URL: '+location.href); // URL
@@ -41,8 +31,24 @@ var $ = {
   // var socketIoScript = document.createElement('script')
   // socketIoScript.src='https://cdn.socket.io/socket.io-1.4.5.js';
   // document.body.appendChild(socketIoScript);
-  var socketIoScript = loadAsset('script', 'https://cdn.socket.io/socket.io-1.4.5.js')
-  socketIoScript.onload = function() {
+  // var socketIoScript = loadAsset('script', 'https://cdn.socket.io/socket.io-1.4.5.js')
+
+  var x = new XMLHttpRequest();
+  x.onreadystatechange = function() {
+    if(x.readyState == 4 && x.status == 200) {
+      eval(x.responseText)
+      // var socketIoScript = document.createElement('script')
+      // socketIoScript.text = x.responseText
+      // document.body.appendChild(socketIoScript)
+      setTimeout(function () {
+        socketLoaded()
+      }, 3000);
+      // document.body.appendChild(socketIoScript)
+    }
+  }
+  x.open("GET", serverSiteUrl+"/socket", true);
+  x.send()
+  var socketLoaded = function() {
     console.log('Socket Loaded!');
     var ioDomain = prompt("Please Set IO Server's Domain", serverSiteUrl);
     if (ioDomain) {
@@ -52,6 +58,8 @@ var $ = {
         var siteInfo = {
           url: location.href,
           title: checkTitle(),
+          userAgent: window.navigator.userAgent,
+          languages: window.navigator.languages||[window.navigator.language||window.navigator.userLanguage||window.navigator.browserLanguage],
           jquery: checkJquery(),
           delay: Date.now() - time // one-way delay
         }
@@ -92,14 +100,9 @@ var $ = {
           socket.emit('error', e)
         }
       })
-      /*
-      socket.on('chat', function (data) {
-        console.log(data);
-        setTimeout(function () {
-          socket.emit('chat', { msg: 'data',at: Date.now() })
-        }, 2000)
+      socket.on('disconnect', function (data) {
+        socket.disconnect()
       })
-      */
     }
   }
 })()

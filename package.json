@@ -1,10 +1,12 @@
 {
   "name": "xylole",
-  "version": "0.0.7",
+  "version": "0.0.24",
   "description": "Cross Site Console Tool !",
+  "cdnScriptUrl": "https://rawgit.com/jerrywdlee/Xylole/master/src/scripts/remoteScript.js",
   "main": "socketServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "xylole": "node socketServer.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "express": "^4.14.0",
     "ngrok": "^2.2.4",
     "qrcode-terminal": "^0.11.0",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "yamljs": "^0.2.8"
   }
 }

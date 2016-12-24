@@ -1,0 +1,6 @@
+- command: border
+  description: Show border of boxes on remote web page
+  code: 'document.querySelectorAll("*").forEach(function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)})'
+- command: black-background
+  description: Let background go black
+  code: 'document.querySelectorAll("*").forEach(function(a){a.style.background="black"})'
