@@ -44,30 +44,44 @@ server.listen(process.env.PORT||port,function () {
 })
 
 // open port on Internet
-const ngrok = require('ngrok');
+var ngrok
+try {
+  ngrok = require('ngrok');
+} catch (e) {
+
+}
 const qrcode = require('qrcode-terminal');
 var ngrokUrl = ''
 
-ngrok.connect({
-  proto: 'http', // http|tcp|tls
-  addr: port, // port or network address
-  //auth: 'user:pwd', // http basic authentication for tunnel
-  //subdomain: ngrok_domain, // only paid plan can use this
-  //authtoken: '12345', // your authtoken from ngrok.com
-  region: 'ap' // one of ngrok regions (us, eu, au, ap), defaults to us
-}, function (err, url) {
-  if (err) {
-    printTags('err')
-    console.error(err)
-    // if ngrok errored, use localhost
-    ngrokUrl = `http://localhost:${server.address().port}`
-    showConnectOptions(ngrokUrl)
-  }else {
-    ngrokUrl = url
-    showConnectOptions(url)
-    // qrcode.generate(insertUrl)
-  }
-});
+if (ngrok) {
+  ngrok.connect({
+    proto: 'http', // http|tcp|tls
+    addr: port, // port or network address
+    //auth: 'user:pwd', // http basic authentication for tunnel
+    //subdomain: ngrok_domain, // only paid plan can use this
+    //authtoken: '12345', // your authtoken from ngrok.com
+    region: 'ap' // one of ngrok regions (us, eu, au, ap), defaults to us
+  }, function (err, url) {
+    if (err) {
+      printTags('err')
+      console.error(err)
+      // if ngrok errored, use localhost
+      ngrokUrl = `http://localhost:${server.address().port}`
+      showConnectOptions(ngrokUrl)
+    }else {
+      ngrokUrl = url
+      console.log(color.g + "\nPlease input url below into prompt shown in page :" + color.e)
+      console.log(ngrokUrl)
+      // console.log('\n')
+      showConnectOptions(url)
+      // qrcode.generate(insertUrl)
+    }
+  });
+} else {
+  ngrokUrl = `http://localhost:${server.address().port}`
+  showConnectOptions(ngrokUrl)
+}
+
 
 // send Dynamic js
 const fs = require('fs');

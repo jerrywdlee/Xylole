@@ -2,7 +2,7 @@
   "name": "xylole",
   "version": "0.0.24",
   "description": "Cross Site Console Tool !",
-  "cdnScriptUrl": "https://rawgit.com/jerrywdlee/Xylole/master/src/scripts/remoteScript.js",
+  "cdnScriptUrl": "https://cdn.rawgit.com/jerrywdlee/Xylole/master/min/xylole-client.min.js",
   "main": "socketServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
