@@ -52,7 +52,7 @@ try {
 }
 const qrcode = require('qrcode-terminal');
 var ngrokUrl = ''
-
+var clientsIdArray = [] // save connected sockets' ids
 if (ngrok) {
   ngrok.connect({
     proto: 'http', // http|tcp|tls
@@ -149,7 +149,7 @@ app.get('/socket', function (req, res) {
 // app.listen(port);
 const io = require('socket.io')(server)
 // var ifOnConnection = false // connection flag
-var clientsIdArray = [] // save connected sockets' ids
+
 io.on('connection', function (socket) {
   console.log(color.c+"connection on "+socket.request.connection.remoteAddress+color.e);
   clientsIdArray.push(socket.id) // add a new id
