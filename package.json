@@ -28,8 +28,7 @@
     "qrcode-terminal": "^0.11.0",
     "socket.io": "^1.7.2",
     "yamljs": "^0.2.8",
-    "ngrok": "^2.2.4",
-    "ngrjyfjfyffyufusdrsttsok": "^2.2.4"
+    "ngrok": "^2.2.4"
   },
   "peerDependencies": {
   }
