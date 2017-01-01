@@ -6,6 +6,7 @@
   "main": "socketServer.js",
   "scripts": {
     "test": "mocha",
+    "coverage": "istanbul cover _mocha",
     "xylole": "node socketServer.js"
   },
   "repository": {
@@ -34,6 +35,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "http-proxy-middleware": "^0.17.3",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "mocha-sinon": "^1.1.6",
     "rewire": "^2.5.2",
