@@ -5,7 +5,7 @@
   "cdnScriptUrl": "https://cdn.rawgit.com/jerrywdlee/Xylole/master/min/xylole-client.min.js",
   "main": "socketServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "xylole": "node socketServer.js"
   },
   "repository": {
@@ -30,6 +30,14 @@
     "yamljs": "^0.2.8",
     "ngrok": "^2.2.4"
   },
-  "peerDependencies": {
+  "peerDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "http-proxy-middleware": "^0.17.3",
+    "mocha": "^3.2.0",
+    "mocha-sinon": "^1.1.6",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.7",
+    "vhost": "^3.0.2"
   }
 }

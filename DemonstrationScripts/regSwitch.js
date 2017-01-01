@@ -16,4 +16,4 @@ function matchOrSwitch(str, reg) {
   }
 }
 
-matchOrSwitch(str, reg)
+// matchOrSwitch(str, reg)
