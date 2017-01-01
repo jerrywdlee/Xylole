@@ -1,5 +1,5 @@
 <h1 align="center">Xylole.js</h1>
-<p align="center"><a href="https://github.com/jerrywdlee/Xylole" target="_blank"><img width="300"src=""/></a></p>
+<p align="center"><a href="https://github.com/jerrywdlee/Xylole" target="_blank"><img width="300" src="https://cdn.rawgit.com/jerrywdlee/Xylole/master/src/assets/xylole.js.svg"/></a></p>
 
 ## Intro
 Xylole.js is a remote console tool for developing web pages on devices which have no console terminals like Chrome's or Firefox's PC versions.
